@@ -2,34 +2,109 @@
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
 
+/*
+ * 다크 모드는 쓰지 않는다. shadcn 컴포넌트의 dark: 클래스가 OS 설정으로 켜지지 않도록
+ * .dark 클래스 기준으로 고정한다 (.dark는 어디에도 붙이지 않음).
+ */
 @custom-variant dark (&:is(.dark *));
 
+/*
+ * 우분투북스 브랜드 팔레트 — 종이, 나무, 촛불의 색.
+ * 출처: project_ubuntu_books/shopping-mall 스타일 가이드 v0.1 (시안 이미지에서 추출한 근사값).
+ */
+@theme static {
+    --color-paper: #f7f2e8; /* 기본 배경 */
+    --color-paper-2: #efe6d6; /* 섹션 배경 */
+    --color-card: #fffcf7; /* 카드·팝오버 */
+    --color-letter: #fcf5ea; /* 편지지 */
+    --color-line: #e4dac9; /* 구분선·테두리 */
+    --color-ink: #2a241f; /* 본문 텍스트 */
+    --color-ink-2: #5d5349; /* 보조 텍스트 */
+    --color-muted-foreground: #6b635b; /* 흐린 텍스트·캡션 (원본 #958a7e → 대비 4.5:1 이상으로 조정) */
+
+    --color-olive: #656839; /* 주요 버튼 */
+    --color-olive-soft: #e9ead6;
+    --color-candle: #e8aa3b; /* 촛불 (창가 reading) */
+    --color-candle-soft: #fcebc8;
+    --color-post: #a74832; /* 우체통 (발송)·오류 (원본 #c2543a → 흰 글씨 대비 4.5:1 이상으로 조정) */
+    --color-sage: #6e8068;
+    --color-night: #2f2b35; /* 창밖 밤하늘 */
+    --color-clay: #9a5b3c;
+}
+
+/* 폰트: 본문·인터페이스는 고딕, 제목·편지는 명조, 손글씨는 손글씨체. 변수는 app/layout.tsx에서 주입 */
+@theme inline {
+    --font-sans: var(--font-noto-sans-kr), 'Apple SD Gothic Neo', sans-serif;
+    --font-serif: var(--font-ridi-batang), 'AppleMyungjo', serif;
+    --font-hand: var(--font-nanum-pen-script), cursive;
+    --font-heading: var(--font-ridi-batang), 'AppleMyungjo', serif;
+}
+
+/* 텍스트 스타일 (typo-*): 폰트·크기·행간을 한 번에. 굵기·색은 쓰는 곳에서 덧붙인다 */
+@utility typo-h1 {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    @media (width >= 48rem) {
+        font-size: 2.625rem;
+    }
+}
+@utility typo-h2 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    @media (width >= 48rem) {
+        font-size: 2rem;
+    }
+}
+@utility typo-h3 {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    line-height: 1.45;
+    @media (width >= 48rem) {
+        font-size: 1.375rem;
+    }
+}
+/* 줄노트 편지지: 행간 40px에 맞춰 밑줄을 깐다 */
+@utility typo-letter {
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    line-height: 2.5rem;
+}
+@utility bg-ruled {
+    background-color: var(--color-letter);
+    background-image: repeating-linear-gradient(
+        to bottom,
+        transparent 0 calc(2.5rem - 1px),
+        var(--color-line) calc(2.5rem - 1px) 2.5rem
+    );
+    background-attachment: local;
+}
+@utility typo-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+}
+@utility typo-hand {
+    font-family: var(--font-hand);
+    font-size: 1.5625rem;
+    line-height: 1.4;
+}
+
+/* shadcn 시맨틱 토큰 → 브랜드 팔레트 */
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
-    --font-sans: var(--font-sans);
-    --font-mono: var(--font-geist-mono);
-    --font-heading: var(--font-sans);
-    --color-sidebar-ring: var(--sidebar-ring);
-    --color-sidebar-border: var(--sidebar-border);
-    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-    --color-sidebar-accent: var(--sidebar-accent);
-    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-    --color-sidebar-primary: var(--sidebar-primary);
-    --color-sidebar-foreground: var(--sidebar-foreground);
-    --color-sidebar: var(--sidebar);
-    --color-chart-5: var(--chart-5);
-    --color-chart-4: var(--chart-4);
-    --color-chart-3: var(--chart-3);
-    --color-chart-2: var(--chart-2);
-    --color-chart-1: var(--chart-1);
     --color-ring: var(--ring);
     --color-input: var(--input);
     --color-border: var(--border);
     --color-destructive: var(--destructive);
     --color-accent-foreground: var(--accent-foreground);
     --color-accent: var(--accent);
-    --color-muted-foreground: var(--muted-foreground);
     --color-muted: var(--muted);
     --color-secondary-foreground: var(--secondary-foreground);
     --color-secondary: var(--secondary);
@@ -38,7 +113,6 @@
     --color-popover-foreground: var(--popover-foreground);
     --color-popover: var(--popover);
     --color-card-foreground: var(--card-foreground);
-    --color-card: var(--card);
     --radius-sm: calc(var(--radius) * 0.6);
     --radius-md: calc(var(--radius) * 0.8);
     --radius-lg: var(--radius);
@@ -49,72 +123,25 @@
 }
 
 :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
+    --background: var(--color-paper);
+    --foreground: var(--color-ink);
+    --card: var(--color-card);
+    --card-foreground: var(--color-ink);
+    --popover: var(--color-card);
+    --popover-foreground: var(--color-ink);
+    --primary: var(--color-olive);
+    --primary-foreground: var(--color-card);
+    --secondary: var(--color-paper-2);
+    --secondary-foreground: var(--color-ink);
+    --muted: var(--color-paper-2);
+    --muted-foreground: var(--color-muted-foreground);
+    --accent: var(--color-olive-soft);
+    --accent-foreground: var(--color-ink);
+    --destructive: var(--color-post);
+    --border: var(--color-line);
+    --input: var(--color-line);
+    --ring: var(--color-olive);
     --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
 }
 
 @layer base {
@@ -126,5 +153,10 @@
     }
     html {
         @apply font-sans;
+    }
+    h1,
+    h2,
+    h3 {
+        font-family: var(--font-heading);
     }
 }
