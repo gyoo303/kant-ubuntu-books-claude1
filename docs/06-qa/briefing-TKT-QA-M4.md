@@ -105,7 +105,7 @@ next_readers: [FE, UX, 사람]
 | S2-6 | 어려움 | 2 | P2: "마무리했는데 '진행 중인 구독이 없어요'만 보여서 인사를 받았는지 모르겠다" (#1) | AC-18-2, UX-13 | `docs/06-qa/screens/S2-6-letter-360.jpg`, `S2-6-done-360.jpg` |
 | S3-1 | 성공 | 9 | — | AC-06-1·4, UX-15 | `docs/06-qa/screens/S3-1-invalid-1280.jpg` |
 | S3-2 | 성공 | 6 | — | AC-13-1·2, AC-15-1·3, NFR-13 | `docs/06-qa/screens/S3-2-shipped-1280.jpg` |
-| S3-3 | 어려움 | 4 | P3: "오늘 할 일에 취소 요청 1건이라는데 눌러 보니 보낼 책이 없다고 나온다" (#2) | AC-20-3·6 | `docs/06-qa/screens/S3-3-keeper-1280.jpg` |
+| S3-3 | 어려움 | 4 | P3: "오늘 할 일에 취소 요청 1건이라는데 눌러 보니 보낼 책이 없다고 나온다" (#2) | AC-20-3·6 | `docs/06-qa/screens/S3-3-keeper-1280.jpg`, `M4-2-admin-home-1280.jpg`, `M4-2-after-click-1280.jpg` |
 | S3-4 | 성공 | 1 | — | AC-19-1 | — (파일 내려받기) |
 
 ## AI 부채 체크
