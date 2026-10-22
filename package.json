@@ -9,6 +9,7 @@
         "start": "next start",
         "lint": "eslint .",
         "test": "node --import tsx --test \"{app,domains,shared}/**/*.test.ts\"",
+        "test:e2e": "playwright test",
         "format": "prettier --write .",
         "format:check": "prettier --check ."
     },
@@ -31,6 +32,7 @@
         "zod": "^4.6.7"
     },
     "devDependencies": {
+        "@playwright/test": "1.56.1",
         "@tailwindcss/turbopack": "^4",
         "@types/node": "^20",
         "@types/react": "^19",

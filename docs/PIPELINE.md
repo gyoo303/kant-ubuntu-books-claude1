@@ -74,6 +74,8 @@
 | BE-BRIEF | `docs/04-backend/briefing.md` | BE | 선행 | QA |
 | FE-BRIEF | `docs/05-frontend/briefing-<TKT>.md` | FE | 선행 | UX (검수 시) |
 | QA-BRIEF | `docs/06-qa/briefing-<TKT 또는 브랜치>.md` | QA | 선행 | UX, 사람 |
+| QA-E2E | `e2e/` (화면 자동 확인: UX-n·페르소나 시나리오·개인정보 화면. `playwright.config.ts`, 실행 `npm run test:e2e`) | QA | — | FE, UX, 사람 |
+| QA-SHOTS | `docs/06-qa/screens/` (QA 브리핑의 스크린샷, `UX-PLAN-QA` §3 결과 표가 가리키는 경로) | QA | — | UX, 사람 |
 
 > `선행` = 점검하는 티켓의 HANDOFF "선행" 열에 이 단계 티켓이 있을 때만 필수다. 예: TKT-FE-01(선행 TKT-DB-01)은 DB-BRIEF, TKT-FE-M2-01(선행 TKT-BE-M2-01)은 BE-BRIEF가 필수다. 브리핑 하나를 여러 티켓이 함께 쓰는 단계(DB·BE)는 머리말 `tickets`에 선행 티켓이 있어야 통과한다.
 

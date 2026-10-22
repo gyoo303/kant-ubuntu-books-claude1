@@ -47,3 +47,7 @@ next-env.d.ts
 
 # agent pipeline run logs
 .pipeline-logs/
+
+# playwright (npm run test:e2e)
+/test-results/
+/playwright-report/
